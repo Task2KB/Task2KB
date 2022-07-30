@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Task2KB</title>
+    
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-light sticky-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://drive.google.com/uc?export=view&id=1MVZXFa4FT78IvIqTegrAu9fxcPOnR4uw" width="130" height="50" alt="how2kb_logo">
+      </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Use Cases</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Team</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="fw-bold fs-2">Relevant Task Detection</div>
+    <div class="fs-3" style="background-color: rgb(0, 0, 0); color:rgb(255, 255, 255); max-width: max-content;">&nbsp;&nbsp; {{ task }} &nbsp;&nbsp;</div>
+    <div class="fw-normal fs-5">Related tasks: </div>
+    <div class="list-group">
+      {% for item in similar_task %}
+      <a href="{{ url_for('task_steps', task=item['Task Name']) }}" class="list-group-item list-group-item-action">
+        <b>Task Name:</b> &nbsp;&nbsp; {{ item['Task Name'] }}
+      </a>
+      {% endfor %}
+    </div>
+</div>
+</body>
+</html>

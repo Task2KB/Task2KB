@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Task2KB</title>
+
+    <!-- <style> 
+      #leftleftbox {
+          float:left; 
+          width:2%;
+      }
+      #leftbox {
+          float:left; 
+          width:15%;
+      }
+      #middlebox{
+          float:left;
+          width:58%;
+      }
+      #greybox{
+          float:left;
+          background: rgb(218, 214, 214);
+      }
+      #rightbox{
+          float:right;
+          width:23%;
+      }
+      #rightrightbox{
+          float:right;
+          width:2%;
+      }
+    </style>     -->
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-light sticky-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://drive.google.com/uc?export=view&id=1MVZXFa4FT78IvIqTegrAu9fxcPOnR4uw" width="130" height="50" alt="how2kb_logo">
+      </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Use Cases</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Team</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<!-- <div id = "boxes"> -->
+    <!-- <div id = "leftleftbox">
+      <div class="fw-bold fs-2">&nbsp;&nbsp;</div>
+    </div> -->
+    <!-- <div id = "leftbox">
+      <div class="fw-bold fs-2">Task Name:</div>
+      <div class="fs-4" style="background-color: rgb(0, 0, 0); color:rgb(255, 255, 255); max-width: max-content;"> &nbsp;&nbsp; {{ task }} &nbsp;&nbsp;</div>
+      
+      <div class="fw-bold fs-4">Task Summary</div>
+      <div id = "greybox" class="text-wrap" style="word-wrap: break-word; width: 100%;">
+        {{ summary_text }}
+      </div>
+      <div class="fw-bold fs-2">&nbsp;&nbsp;</div> 
+      <div class="fw-bold fs-4">Questions</div> 
+      <div>
+        <ul class="list-group list-group-flush">
+          {% for question in questions %}
+          <li class="list-group-item">
+            <div>{{question['Question Description']}}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>  -->
+
+    <div class = "container">
+      <div class="fw-bold fs-6">&nbsp;&nbsp;</div>
+      <div class="fw-bold fs-4">Available attributes for Task: &nbsp;&nbsp; {{ task }} </div>
+      <div class="fw-bold fs-6">&nbsp;&nbsp;</div>
+      <button type="button" class="btn btn-dark" id="summarybtn">Task Summary</button>
+      <button type="button" class="btn btn-dark" id="stepsbtn">Task Steps</button>
+      <button type="button" class="btn btn-dark" id="similartaskbtn">Similar Tasks</button>
+      <button type="button" class="btn btn-dark">Questions</button>
+      <button type="button" class="btn btn-dark">Advanced Attibutes</button>
+      <div class="fw-bold fs-6">&nbsp;&nbsp;</div>
+      
+      <div id = "summary_text">
+        <div class="fw-bold fs-4">Task Summary</div>
+        <div id = "greybox" class="text-wrap" style="word-wrap: break-word; width: 100%;">
+          {{ summary_text }}
+        </div>
+      </div>
+      
+      <div id= "steps">
+        <div class="fw-normal fs-5"><b>&nbsp;&nbsp;Steps of the given task:</b></div>
+        <div id = "insidebox">
+          <ul class="list-group list-group-flush">
+            {% for step in steps %}
+            <li class="list-group-item">
+              <b>Step {{step['Step Number']}}:</b> &nbsp; {{ step['Subtask of'] }}
+              <div><b>Description:</b> {{step['Description']}}</div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div id = 'similartasks'>
+        <div class="fw-bold fs-4">Similar Tasks: </div>
+        <div class="list-group">
+          {% for item in related_article %}
+            <a href="{{ url_for('task_steps', task=item['Task Name'][2:-1]) }}" class="list-group-item list-group-item-action">
+              <b>Article Name:</b> &nbsp;&nbsp; {{ item['Task Name'][2:-1] }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      </div>
+    <!-- <div id = "rightbox">
+      <div class="fw-bold fs-2">&nbsp;&nbsp;</div>
+      <div class="fw-bold fs-4">Similar articles to the given one: </div>
+      <div class="list-group">
+        {% for item in related_article %}
+          <a href="{{ url_for('task_steps', task=item['Task Name'][2:-1]) }}" class="list-group-item list-group-item-action">
+            <b>Article Name:</b> &nbsp;&nbsp; {{ item['Task Name'][2:-1] }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div id = "rightrightbox">
+      <div class="fw-bold fs-2">&nbsp;&nbsp;</div>
+    </div> -->
+    <script>
+        const summaryDiv = document.getElementById("summary_text");
+        const taskStepsDiv = document.getElementById("steps");
+        const similartasksDiv = document.getElementById("similartasks");
+        const summarybtn = document.getElementById("summarybtn");
+        const stepsbtn = document.getElementById("stepsbtn");
+        const similartaskbtn = document.getElementById("similartaskbtn");
+        taskStepsDiv.style.display = 'none';
+        similartasksDiv.style.display = 'none';
+        summarybtn.onclick = function () {
+            if (summaryDiv.style.display !== "block") {
+              summaryDiv.style.display = "block";
+              taskStepsDiv.style.display = "none";
+              similartasksDiv.style.display = "none"
+            } else {
+              summaryDiv.style.display = "none";
+            }
+        };
+        stepsbtn.onclick = function () {
+            if (taskStepsDiv.style.display !== "block") {
+              taskStepsDiv.style.display = "block";
+              summaryDiv.style.display = "none";
+              similartasksDiv.style.display = "none"
+            } else {
+              taskStepsDiv.style.display = "none";
+            }
+        };
+        similartaskbtn.onclick = function () {
+            if (similartasksDiv.style.display !== "block") {
+              similartasksDiv.style.display = "block";
+              summaryDiv.style.display = "none";
+              taskStepsDiv.style.display = "none"
+            } else {
+              similartasksDiv.style.display = "none";
+            }
+        };
+    </script>
+<!-- </div> -->
+</body>
+</html>

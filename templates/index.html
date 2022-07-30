@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg bg-light sticky-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://drive.google.com/uc?export=view&id=1MVZXFa4FT78IvIqTegrAu9fxcPOnR4uw" width="130" height="50" alt="how2kb_logo">  
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/topical_view/">Topical View</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Use Cases</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light bg-dark" href="/">Team</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- <p class="fw-bold fs-2">Similar Task</p>
+    <p class="fw-normal">Task2KB allows a quick search of similar tasks among those exisiting ones in the WikiHow corpus.</p>
+    <p class="fw-normal">This can be achieved by simply submiting a query below:</p> -->
+    <div id="icon"><a class="navbar-brand" href="/">
+      <img src="https://drive.google.com/uc?export=view&id=1LFHalDmVmHintEevh9CvTos3NuN2QM3K" width="390" height="150" alt="how2kb_logo">  
+      </a>
+    </div>
+    <form method="post" action=" {{ url_for('task') }} ">
+      <div class="input-group mb-3" id="searchbar">
+          <input type="text" class="form-control" placeholder="Todo Task" aria-label="task" aria-describedby="todo-task-search" name="todo-task-search" autocomplete="off">
+          <button class="btn btn-outline-secondary" type="submit" id="todo-task-search">Search</button>
+        </div>
+    </form>
+</div>
+
+<!-- <div class="container">
+    <p class="fw-bold fs-2">Related Article</p>
+    <p class="fw-normal">Task2KB allows a quick search of similar articles among those exisiting ones in the WikiHow corpus.</p>
+    <p class="fw-normal">This can be achieved by simply submiting a query below:</p>
+    <form method="post" action=" {{ url_for('index') }} ">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Article" aria-label="article" aria-describedby="article-search" name="article-search">
+          <button class="btn btn-outline-secondary" type="submit" id="article-search">Search</button>
+        </div>          
+    </form>
+</div> -->
+
+<!-- <div class="container">
+    <p class="fw-bold fs-2">Task Steps</p>
+    <p class="fw-normal">Task2KB also allows searching the corrponding steps for a given task.</p>
+    <p class="fw-normal">This can be achieved by simply submiting a query below:</p>
+    <form method="post" action=" {{ url_for('index') }} ">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Task steps" aria-label="Task steps" aria-describedby="task-steps-search" name="task-step-search">
+          <button class="btn btn-outline-secondary" type="submit" id="task-steps-search">Search</button>
+        </div>          
+    </form>
+</div> -->
+
+    
+    
+{% endblock %}
